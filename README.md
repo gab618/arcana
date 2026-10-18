@@ -12,6 +12,10 @@ O **Arcana** foi concebido para ser uma suíte expansível de ferramentas esoté
 
 ## 🚀 Funcionalidades Atuais
 
+- ☀️ **Carta do Dia (`/` e `/carta-do-dia`)**:
+  - Sorteio diário interativo com animação *flip* 3D e destaque direto na Home.
+  - Persistência por fuso local no `localStorage`: mantém a carta revelada até a meia-noite e libera um novo sorteio no dia seguinte.
+
 - 🌟 **Descobridor de Arcano Pessoal (`/arcano-pessoal`)**:
   - Calcula o arcano regente com base no **nome completo** e **data de nascimento**.
   - **Passo 1 (Data)**: Soma de todos os dígitos da data reduzida para um valor de 1 a 22.
