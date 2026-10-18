@@ -4,31 +4,35 @@ import { notFound } from "next/navigation";
 import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { MAJOR_ARCANA, getArcanumBySlug } from "@/lib/tarot/major-arcana";
+import { ALL_TAROT_CARDS, getCardBySlug } from "@/lib/tarot/all-cards";
 
 export const instant = false;
 
 export function generateStaticParams() {
-  return MAJOR_ARCANA.map((arcanum) => ({ slug: arcanum.slug }));
+  return ALL_TAROT_CARDS.map((card) => ({ slug: card.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/arcanos/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const arcanum = getArcanumBySlug(slug);
-  if (!arcanum) return {};
+  const card = getCardBySlug(slug);
+  if (!card) return {};
 
-  const title = `${arcanum.name} (Arcano ${arcanum.number}) – significado`;
-  const description = `Significado do arcano ${arcanum.number}, ${arcanum.name}, no tarot.`;
-  const url = `/arcanos/${arcanum.slug}`;
+  const badge =
+    card.type === "major"
+      ? `Arcano ${card.number}`
+      : `Naipe de ${card.suitName}`;
+  const title = `${card.name} (${badge}) – significado`;
+  const description = `Significado da carta ${card.name} (${badge}) no tarot.`;
+  const url = `/arcanos/${card.slug}`;
 
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, images: [arcanum.image] },
-    twitter: { card: "summary_large_image", title, description, images: [arcanum.image] },
+    openGraph: { title, description, url, images: [card.image] },
+    twitter: { card: "summary_large_image", title, description, images: [card.image] },
   };
 }
 
@@ -36,18 +40,23 @@ export default async function ArcanumPage({
   params,
 }: PageProps<"/arcanos/[slug]">) {
   const { slug } = await params;
-  const arcanum = getArcanumBySlug(slug);
-  if (!arcanum) notFound();
+  const card = getCardBySlug(slug);
+  if (!card) notFound();
 
-  const pageUrl = `${SITE_URL}/arcanos/${arcanum.slug}`;
+  const isMajor = card.type === "major";
+  const badgeLabel = isMajor
+    ? `Arcano Maior ${card.number}`
+    : `Arcano Menor · Naipe de ${card.suitName}`;
+
+  const pageUrl = `${SITE_URL}/arcanos/${card.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Article",
-        headline: `${arcanum.name} (Arcano ${arcanum.number})`,
-        description: arcanum.summary,
-        image: `${SITE_URL}${arcanum.image}`,
+        headline: `${card.name} (${badgeLabel})`,
+        description: card.summary,
+        image: `${SITE_URL}${card.image}`,
         inLanguage: "pt-BR",
         mainEntityOfPage: pageUrl,
         publisher: { "@type": "Organization", name: SITE_NAME },
@@ -57,7 +66,7 @@ export default async function ArcanumPage({
         itemListElement: [
           { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
           { "@type": "ListItem", position: 2, name: "Arcanos", item: `${SITE_URL}/arcanos` },
-          { "@type": "ListItem", position: 3, name: arcanum.name, item: pageUrl },
+          { "@type": "ListItem", position: 3, name: card.name, item: pageUrl },
         ],
       },
     ],
@@ -73,30 +82,35 @@ export default async function ArcanumPage({
         }}
       />
       <div className="grid gap-8 md:grid-cols-[260px_1fr]">
-        <ArcanoCard arcanum={arcanum} priority sizes="(min-width: 768px) 260px, 100vw" />
+        <ArcanoCard arcanum={card} priority sizes="(min-width: 768px) 260px, 100vw" />
         <div>
-          <p className="text-sm text-zinc-500">Arcano {arcanum.number}</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+            {badgeLabel}
+          </p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight">
-            {arcanum.name}
+            {card.name}
           </h1>
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
-            {arcanum.summary}
+            {card.summary}
           </p>
 
           <div className="mt-6">
             <ShareButtons
-              title={`${arcanum.name} (Arcano ${arcanum.number}) · ${SITE_NAME}`}
-              text={`Descobri o arcano ${arcanum.name} (Arcano ${arcanum.number}) no Arcana! Veja o significado e descubra o seu:`}
-              path={`/arcanos/${arcanum.slug}`}
+              title={`${card.name} (${badgeLabel}) · ${SITE_NAME}`}
+              text={`Conheça a carta ${card.name} (${badgeLabel}) no Arcana! Veja o significado completo:`}
+              path={`/arcanos/${card.slug}`}
             />
           </div>
 
           <nav className="mt-8 flex flex-wrap gap-4 text-sm">
-            <Link href="/arcano-pessoal" className="underline">
-              Descobrir meu arcano
+            <Link href="/carta-do-dia" className="underline">
+              Tirar carta do dia
+            </Link>
+            <Link href="/tiragem-3-cartas" className="underline">
+              Tiragem de 3 cartas
             </Link>
             <Link href="/arcanos" className="underline">
-              Ver todos os arcanos
+              Ver todos os 78 arcanos
             </Link>
           </nav>
         </div>

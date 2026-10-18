@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { CARD_IMAGE_SIZE } from "@/lib/tarot/major-arcana";
-import type { MajorArcanum } from "@/lib/tarot/types";
+import type { TarotCard } from "@/lib/tarot/types";
 
 export function ArcanoCard({
   arcanum,
   priority = false,
   sizes = "(min-width: 768px) 240px, 50vw",
 }: {
-  arcanum: MajorArcanum;
+  arcanum: Pick<TarotCard, "image" | "imageAlt">;
   priority?: boolean;
   sizes?: string;
 }) {

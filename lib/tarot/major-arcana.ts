@@ -33,6 +33,7 @@ const CARDS: ReadonlyArray<readonly [number, string, string]> = [
 
 export const MAJOR_ARCANA: readonly MajorArcanum[] = CARDS.map(
   ([number, slug, name]) => ({
+    type: "major",
     number,
     slug,
     name,
