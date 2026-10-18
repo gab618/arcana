@@ -3,8 +3,6 @@ import type { MajorArcanum } from "./types";
 /** Todas as cartas têm a mesma proporção, então o tamanho é fixo (evita layout shift). */
 export const CARD_IMAGE_SIZE = { width: 600, height: 1050 } as const;
 
-/** Troque por arquivos reais em public/arcanos/<slug>.webp e atualize `image` abaixo. */
-const PLACEHOLDER_IMAGE = "/arcanos/placeholder.svg";
 const PLACEHOLDER_SUMMARY = "Conteúdo em breve.";
 
 // [número, slug, nome] — numeração em que o Louco é o 22.
@@ -39,7 +37,7 @@ export const MAJOR_ARCANA: readonly MajorArcanum[] = CARDS.map(
     slug,
     name,
     summary: PLACEHOLDER_SUMMARY,
-    image: PLACEHOLDER_IMAGE,
+    image: `/arcanos/${slug}.webp`,
     imageAlt: `Carta ${name} do tarot (arcano ${number})`,
   }),
 );
