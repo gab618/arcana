@@ -11,4 +11,9 @@ export const TOOLS: readonly Tool[] = [
     title: "Arcano Pessoal",
     description: "Descubra seu arcano com nome completo e data de nascimento.",
   },
+  {
+    href: "/arcano-anual",
+    title: "Arcano Anual",
+    description: "Descubra o arcano que rege seu ciclo de aniversário a aniversário.",
+  },
 ];
