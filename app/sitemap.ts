@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { MAJOR_ARCANA } from "@/lib/tarot/major-arcana";
+import { ALL_TAROT_CARDS } from "@/lib/tarot/all-cards";
 import { TOOLS } from "@/lib/tools";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/arcanos",
     ...TOOLS.map((tool) => tool.href),
-    ...MAJOR_ARCANA.map((arcanum) => `/arcanos/${arcanum.slug}`),
+    ...ALL_TAROT_CARDS.map((card) => `/arcanos/${card.slug}`),
   ];
   return paths.map((path) => ({ url: `${SITE_URL}${path}` }));
 }

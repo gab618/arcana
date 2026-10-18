@@ -31,9 +31,9 @@ O **Arcana** foi concebido para ser uma suíte expansível de ferramentas esoté
   - **Fórmula**: `(dia + mês + ano de nascimento) + ano do aniversário de referência`. A soma dos algarismos do total é reduzida para 1 a 22.
   - Determinação automática do ciclo de vigência vigente (último aniversário) ou consulta flexível de qualquer ano.
 
-- 🃏 **Galeria e Páginas dos 22 Arcanos Maiores (`/arcanos` e `/arcanos/[slug]`)**:
-  - 22 páginas estáticas pré-renderizadas (SSG) com rotas semânticas amigáveis (ex: `/arcanos/o-mago`, `/arcanos/a-estrela`).
-  - Ilustrações clássicas *Rider-Waite-Smith* otimizadas em formato WebP de alta fidelidade e baixo peso (~150 KB por carta).
+- 🃏 **Catálogo dos 78 Arcanos do Tarot (`/arcanos` e `/arcanos/[slug]`)**:
+  - 78 páginas estáticas pré-renderizadas (SSG): **22 Arcanos Maiores** e **56 Arcanos Menores** organizados pelos 4 naipes (*Copas, Ouros, Espadas e Paus*).
+  - Ilustrações clássicas *Rider-Waite-Smith* otimizadas em formato WebP de alta fidelidade e baixo peso (~150 KB por carta), com links de navegação rápida e Schema.org Article em cada página.
 
 - 🔍 **SEO & Otimização Técnica**:
   - Metadados dinâmicos e exclusivos por página (`title`, `description`, `canonical`).
