@@ -12,6 +12,12 @@ export const TOOLS: readonly Tool[] = [
     description: "Sorteie o arcano que acompanha e orienta a energia do seu dia.",
   },
   {
+    href: "/tiragem-3-cartas",
+    title: "Tiragem de 3 Cartas",
+    description:
+      "Embaralhe, corte o maço e escolha 3 Arcanos Maiores na mesa ritual.",
+  },
+  {
     href: "/arcano-pessoal",
     title: "Arcano Pessoal",
     description: "Descubra seu arcano com nome completo e data de nascimento.",

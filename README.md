@@ -16,6 +16,9 @@ O **Arcana** foi concebido para ser uma suíte expansível de ferramentas esoté
   - Sorteio diário interativo com animação *flip* 3D e destaque direto na Home.
   - Persistência por fuso local no `localStorage`: mantém a carta revelada até a meia-noite e libera um novo sorteio no dia seguinte.
 
+- 🎴 **Tiragem de 3 Cartas (`/tiragem-3-cartas`)**:
+  - Ritual guiado na mesa: escolha entre *Passado · Presente · Futuro* ou *Situação · Desafio · Conselho*, embaralhe, corte o maço, escolha 3 cartas no leque dos 22 Arcanos Maiores e revele uma a uma.
+
 - 🌟 **Descobridor de Arcano Pessoal (`/arcano-pessoal`)**:
   - Calcula o arcano regente com base no **nome completo** e **data de nascimento**.
   - **Passo 1 (Data)**: Soma de todos os dígitos da data reduzida para um valor de 1 a 22.
