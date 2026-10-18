@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔮 Arcana
 
-## Getting Started
+> Plataforma web moderna de ferramentas de Tarot, Numerologia e Autoconhecimento desenvolvida com **Next.js 16**, **React 19** e **Tailwind CSS v4**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Sobre o Projeto
+
+O **Arcana** foi concebido para ser uma suíte expansível de ferramentas esotéricas e arquetípicas. O projeto combina cálculos numerológicos precisos, privacidade de dados e uma arquitetura orientada a performance e SEO técnico para buscadores.
+
+---
+
+## 🚀 Funcionalidades Atuais
+
+- 🌟 **Descobridor de Arcano Pessoal (`/arcano-pessoal`)**:
+  - Calcula o arcano regente com base no **nome completo** e **data de nascimento**.
+  - **Passo 1 (Data)**: Soma de todos os dígitos da data reduzida para um valor de 1 a 22.
+  - **Passo 2 (Nome)**: Conversão das letras usando a tabela pitagórica (A=1...I=9, J=1...R=9, S=1...Z=8), somando e reduzindo para 1 a 22.
+  - **Passo 3 (Soma Final)**: Combinação da data com o nome reduzida para 1 a 22 (onde 22 representa O Louco).
+  - 🛡️ **Privacidade**: Cálculo executado 100% no navegador — nome e data nunca saem do dispositivo do usuário.
+
+- 🃏 **Galeria e Páginas dos 22 Arcanos Maiores (`/arcanos` e `/arcanos/[slug]`)**:
+  - 22 páginas estáticas pré-renderizadas (SSG) com rotas semânticas amigáveis (ex: `/arcanos/o-mago`, `/arcanos/a-estrela`).
+  - Ilustrações clássicas *Rider-Waite-Smith* otimizadas em formato WebP de alta fidelidade e baixo peso (~150 KB por carta).
+
+- 🔍 **SEO & Otimização Técnica**:
+  - Metadados dinâmicos e exclusivos por página (`title`, `description`, `canonical`).
+  - Imagens de compartilhamento para redes sociais (`Open Graph` e `Twitter Cards`).
+  - Dados estruturados Schema.org (`Article` e `BreadcrumbList`) em JSON-LD.
+  - Geração automática de `sitemap.xml` e `robots.txt`.
+
+---
+
+## 🛠️ Stack Tecnológica
+
+| Tecnologia | Finalidade |
+| :--- | :--- |
+| **[Next.js 16](https://nextjs.org/)** | Framework fullstack com App Router, Turbopack e Cache Components |
+| **[React 19](https://react.dev/)** | Biblioteca de interface reativa |
+| **[Tailwind CSS v4](https://tailwindcss.com/)** | Estilização utilitária de alto desempenho |
+| **[TypeScript](https://www.typescriptlang.org/)** | Tipagem estática rigorosa em todo o código |
+| **[Vitest](https://vitest.dev/)** | Suíte de testes unitários ultrarrápida |
+| **[pnpm](https://pnpm.io/)** | Gerenciador de pacotes eficiente |
+
+---
+
+## 📁 Arquitetura do Projeto
+
+O código é estruturado pelo padrão **Feature-Driven Architecture** para permitir escalabilidade e fácil manutenção:
+
+```text
+arcana/
+├── 📂 app/                     # Rotas e páginas (App Router)
+│   ├── 📄 layout.tsx           # Layout raiz com fontes Geist, SEO base e header
+│   ├── 📄 page.tsx             # Home com catálogo de ferramentas ativas
+│   ├── 📄 sitemap.ts           # Geração automatizada do sitemap.xml
+│   ├── 📄 robots.ts            # Configuração do robots.txt
+│   ├── 📂 arcano-pessoal/      # Rota da ferramenta de Arcano Pessoal
+│   └── 📂 arcanos/             # Catálogo (/arcanos) e páginas individuais ([slug])
+│
+├── 📂 features/                # Módulos isolados por funcionalidade
+│   └── 📂 arcano-pessoal/
+│       ├── 📄 calculate.ts     # Funções puras de cálculo (sem dependência de UI)
+│       ├── 📄 calculate.test.ts# Testes unitários com casos de borda
+│       └── 📂 components/      # Formulário e componentes visuais da feature
+│
+├── 📂 lib/                     # Dados compartilhados e utilitários
+│   ├── 📄 site.ts              # Constantes de configuração e URLs do site
+│   ├── 📄 tools.ts             # Registro central de ferramentas disponíveis
+│   └── 📂 tarot/
+│       ├── 📄 types.ts         # Definições de tipos TypeScript dos Arcanos
+│       └── 📄 major-arcana.ts  # Catálogo dos 22 arcanos e utilitários de busca
+│
+├── 📂 public/                  # Arquivos estáticos
+│   └── 📂 arcanos/             # 22 cartas em formato .webp otimizado
+└── 📂 components/              # Componentes globais de UI (ex: SiteHeader)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧩 Como Adicionar Novas Ferramentas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para adicionar uma nova ferramenta (ex: *Tiragem de 3 Cartas*):
 
-## Learn More
+1. **Crie a feature em `features/<nova-ferramenta>/`**:
+   - Implemente a lógica pura e componentes necessários.
+2. **Crie a rota em `app/<nova-ferramenta>/page.tsx`**:
+   - Monte a interface e defina a metadata de SEO.
+3. **Registre a ferramenta em `lib/tools.ts`**:
+   - Adicione o link, título e descrição no array `TOOLS`.
+   - A home, o menu de navegação e o sitemap serão atualizados automaticamente! 🎉
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚦 Como Rodar Localmente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Pré-requisitos
+- Node.js 20+
+- pnpm instalado (`corepack enable` ou `npm i -g pnpm`)
 
-## Deploy on Vercel
+### Instalação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/arcana.git
+cd arcana
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Instale as dependências
+pnpm install
+```
+
+### Executando em Desenvolvimento
+
+```bash
+pnpm dev
+```
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
+
+### Rodando os Testes Unitários
+
+```bash
+pnpm test
+```
+
+### Verificação de Tipos e Build de Produção
+
+```bash
+# Linting
+pnpm lint
+
+# Build otimizado para produção
+pnpm build
+```
+
+---
+
+## 🎨 Imagens e Créditos
+
+- As ilustrações dos Arcanos Maiores são provenientes do clássico baralho **Rider-Waite-Smith (1909)**, ilustrado por Pamela Colman Smith sob a orientação de Arthur Edward Waite, de **domínio público**.
+
+---
+
+<p align="center">
+  Feito com 🔮 e dedicação para amantes de Tarot e tecnologia.
+</p>
