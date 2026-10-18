@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181528"/>
+      <stop offset="100%" stop-color="#0b0a12"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcedb4"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#aa820a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo arredondado com borda mística -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <rect x="1" y="1" width="30" height="30" rx="6" fill="none" stroke="url(#gold)" stroke-width="0.75" stroke-opacity="0.4"/>
+
+  <!-- Estrela de 8 pontas (Arcano / Tarot) -->
+  <g transform="translate(16, 16)">
+    <!-- Estrela principal -->
+    <path d="M0 -11 L2.2 -3.5 L9.7 -3.5 L3.6 1 L5.8 8.5 L0 4.2 L-5.8 8.5 L-3.6 1 L-9.7 -3.5 L-2.2 -3.5 Z" fill="url(#gold)"/>
+    <!-- Brilho central / orbe -->
+    <circle cx="0" cy="0" r="1.8" fill="#fff" opacity="0.9"/>
+  </g>
+</svg>
