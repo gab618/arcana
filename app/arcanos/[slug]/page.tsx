@@ -5,6 +5,8 @@ import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { MAJOR_ARCANA, getArcanumBySlug } from "@/lib/tarot/major-arcana";
 
+export const instant = false;
+
 export function generateStaticParams() {
   return MAJOR_ARCANA.map((arcanum) => ({ slug: arcanum.slug }));
 }
