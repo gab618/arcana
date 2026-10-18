@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { MAJOR_ARCANA, getArcanumBySlug } from "@/lib/tarot/major-arcana";
@@ -81,6 +82,15 @@ export default async function ArcanumPage({
           <p className="mt-4 text-zinc-700 dark:text-zinc-300">
             {arcanum.summary}
           </p>
+
+          <div className="mt-6">
+            <ShareButtons
+              title={`${arcanum.name} (Arcano ${arcanum.number}) · ${SITE_NAME}`}
+              text={`Descobri o arcano ${arcanum.name} (Arcano ${arcanum.number}) no Arcana! Veja o significado e descubra o seu:`}
+              path={`/arcanos/${arcanum.slug}`}
+            />
+          </div>
+
           <nav className="mt-8 flex flex-wrap gap-4 text-sm">
             <Link href="/arcano-pessoal" className="underline">
               Descobrir meu arcano

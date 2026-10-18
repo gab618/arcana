@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
 import { getArcanumByNumber } from "@/lib/tarot/major-arcana";
 import type { MajorArcanum } from "@/lib/tarot/types";
@@ -188,7 +189,15 @@ export function ArcanoAnualForm() {
                 </ul>
               </div>
 
-              <div className="pt-2">
+              <div className="flex justify-center pt-2 sm:justify-start">
+                <ShareButtons
+                  title={`Meu Arcano Anual: ${result.arcanum.name}`}
+                  text={`Meu Arcano Anual (${result.cycleStart} a ${result.cycleEnd}) é ${result.arcanum.name} (Arcano ${result.arcanum.number})! Calcule o seu também:`}
+                  path="/arcano-anual"
+                />
+              </div>
+
+              <div className="pt-1">
                 <Link
                   href={`/arcanos/${result.arcanum.slug}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300"
