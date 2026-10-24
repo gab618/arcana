@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
+import { SITE_NAME } from "@/lib/site";
 import { getArcanumByNumber } from "@/lib/tarot/major-arcana";
 import {
   SPREAD_MODELS,
@@ -444,8 +445,8 @@ export function TiragemTresCartas() {
                   Compartilhar sua tiragem ({model.title}):
                 </p>
                 <ShareButtons
-                  title={`Minha Tiragem de 3 Cartas (${model.title}) · Arcana`}
-                  text={`Minha tiragem de 3 cartas (${model.title}) no Arcana revelou: ${model.positions
+                  title={`Minha Tiragem de 3 Cartas (${model.title}) · ${SITE_NAME}`}
+                  text={`Minha tiragem de 3 cartas (${model.title}) no ${SITE_NAME} revelou: ${model.positions
                     .map(
                       (p) =>
                         `${p.label}: ${getArcanumByNumber(pickedNumbers[p.index]).name}`,

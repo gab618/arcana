@@ -7,6 +7,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "",
     "/arcanos",
+    "/sobre",
+    "/politica-de-privacidade",
+    "/termos-de-uso",
     ...TOOLS.map((tool) => tool.href),
     ...ALL_TAROT_CARDS.map((card) => `/arcanos/${card.slug}`),
   ];

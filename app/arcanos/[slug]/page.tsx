@@ -97,7 +97,7 @@ export default async function ArcanumPage({
           <div className="mt-6">
             <ShareButtons
               title={`${card.name} (${badgeLabel}) · ${SITE_NAME}`}
-              text={`Conheça a carta ${card.name} (${badgeLabel}) no Arcana! Veja o significado completo:`}
+              text={`Conheça a carta ${card.name} (${badgeLabel}) no ${SITE_NAME}! Veja o significado completo:`}
               path={`/arcanos/${card.slug}`}
             />
           </div>
