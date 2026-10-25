@@ -43,4 +43,19 @@ describe("Catálogo Completo do Tarot (78 cartas)", () => {
     expect(getCardBySlug("rei-de-espadas")?.name).toBe("Rei de Espadas");
     expect(getCardBySlug("carta-inexistente")).toBeUndefined();
   });
+
+  it("todos os 22 Arcanos Maiores possuem conteúdo editorial completo cadastrado", () => {
+    for (const card of MAJOR_ARCANA) {
+      expect(card.content, `Conteúdo ausente para ${card.slug}`).toBeDefined();
+      const content = card.content!;
+      expect(content.summary.length).toBeGreaterThan(30);
+      expect(content.keywords.length).toBeGreaterThanOrEqual(5);
+      expect(content.general.length).toBeGreaterThanOrEqual(3);
+      expect(content.love.length).toBeGreaterThanOrEqual(2);
+      expect(content.work.length).toBeGreaterThanOrEqual(2);
+      expect(content.health.length).toBeGreaterThanOrEqual(2);
+      expect(content.reversed.length).toBeGreaterThanOrEqual(2);
+      expect(content.advice.length).toBeGreaterThan(20);
+    }
+  });
 });
