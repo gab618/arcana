@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -19,7 +20,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: SITE_NAME, template: `%s · ${SITE_NAME}` },
   description: SITE_DESCRIPTION,
-  openGraph: { siteName: SITE_NAME, locale: "pt_BR", type: "website" },
+  openGraph: {
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -32,6 +45,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
 import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
+import { trackTarotEvent } from "@/lib/analytics";
 import { getArcanumByNumber } from "@/lib/tarot/major-arcana";
 import {
   DAILY_CARD_STORAGE_KEY,
@@ -73,6 +74,7 @@ export function CartaDoDia() {
 
   function handleDraw() {
     const drawn = drawArcanumNumber();
+    trackTarotEvent("tirar_carta_do_dia", "carta_do_dia", String(drawn));
     try {
       window.localStorage.setItem(
         DAILY_CARD_STORAGE_KEY,
@@ -95,7 +97,13 @@ export function CartaDoDia() {
           <CardBack />
           {arcanum && (
             <div className="absolute inset-0 rotate-y-180 backface-hidden">
-              <ArcanoCard arcanum={arcanum} sizes="208px" />
+              <Link
+                href={`/arcanos/${arcanum.slug}`}
+                className="block h-full w-full transition-transform hover:scale-105"
+                aria-label={`Ver significado de ${arcanum.name}`}
+              >
+                <ArcanoCard arcanum={arcanum} sizes="208px" />
+              </Link>
             </div>
           )}
         </div>

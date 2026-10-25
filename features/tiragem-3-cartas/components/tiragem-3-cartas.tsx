@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
+import { trackTarotEvent } from "@/lib/analytics";
 import { SITE_NAME } from "@/lib/site";
 import { getArcanumByNumber } from "@/lib/tarot/major-arcana";
 import {
@@ -84,6 +85,7 @@ export function TiragemTresCartas() {
     const next = [...pickedNumbers, cardNumber];
     setPickedNumbers(next);
     if (next.length === 3) {
+      trackTarotEvent("tiragem_3_cartas_completa", "tiragem_3_cartas", modelId);
       setStage("revelacao");
     }
   }
@@ -413,9 +415,13 @@ export function TiragemTresCartas() {
                   key={pos.index}
                   className="flex flex-col gap-4 rounded-xl border border-zinc-200 p-5 sm:flex-row sm:items-center dark:border-zinc-800"
                 >
-                  <div className="w-24 shrink-0">
+                  <Link
+                    href={`/arcanos/${arcanum.slug}`}
+                    className="w-24 shrink-0 transition-transform hover:scale-105"
+                    aria-label={`Ver significado de ${arcanum.name}`}
+                  >
                     <ArcanoCard arcanum={arcanum} sizes="96px" />
-                  </div>
+                  </Link>
                   <div className="flex-1 space-y-1.5">
                     <p className="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
                       {pos.index + 1}. {pos.label} — {pos.prompt}
