@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { trackTarotEvent } from "@/lib/analytics";
 import { getArcanumByNumber } from "@/lib/tarot/major-arcana";
 import { normalizeName, personalArcanum } from "../calculate";
 
@@ -37,6 +38,7 @@ export function ArcanoForm() {
 
     const [year, month, day] = birth.split("-").map(Number);
     const { final } = personalArcanum(name, year, month, day);
+    trackTarotEvent("calcular_arcano_pessoal", "arcano_pessoal", String(final));
     router.push(`/arcanos/${getArcanumByNumber(final).slug}`);
   }
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
+import { ArcanumArticle } from "@/features/arcanos/components/arcanum-article";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { ALL_TAROT_CARDS, getCardBySlug } from "@/lib/tarot/all-cards";
 
@@ -24,7 +25,10 @@ export async function generateMetadata({
       ? `Arcano ${card.number}`
       : `Naipe de ${card.suitName}`;
   const title = `${card.name} (${badge}) – significado`;
-  const description = `Significado da carta ${card.name} (${badge}) no tarot.`;
+  const description =
+    card.summary && card.summary !== "Conteúdo em breve."
+      ? card.summary
+      : `Significado da carta ${card.name} (${badge}) no tarot.`;
   const url = `/arcanos/${card.slug}`;
 
   return {
@@ -97,7 +101,7 @@ export default async function ArcanumPage({
           <div className="mt-6">
             <ShareButtons
               title={`${card.name} (${badgeLabel}) · ${SITE_NAME}`}
-              text={`Conheça a carta ${card.name} (${badgeLabel}) no Arcana! Veja o significado completo:`}
+              text={`Conheça a carta ${card.name} (${badgeLabel}) no ${SITE_NAME}! Veja o significado completo:`}
               path={`/arcanos/${card.slug}`}
             />
           </div>
@@ -115,6 +119,10 @@ export default async function ArcanumPage({
           </nav>
         </div>
       </div>
+
+      {card.content && (
+        <ArcanumArticle name={card.name} content={card.content} />
+      )}
     </main>
   );
 }

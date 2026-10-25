@@ -1,4 +1,4 @@
-# 🔮 Arcana
+# 🔮 Tirar Tarot
 
 > Plataforma web moderna de ferramentas de Tarot, Numerologia e Autoconhecimento desenvolvida com **Next.js 16**, **React 19** e **Tailwind CSS v4**.
 
@@ -6,7 +6,7 @@
 
 ## ✨ Sobre o Projeto
 
-O **Arcana** foi concebido para ser uma suíte expansível de ferramentas esotéricas e arquetípicas. O projeto combina cálculos numerológicos precisos, privacidade de dados e uma arquitetura orientada a performance e SEO técnico para buscadores.
+O **Tirar Tarot** (`tirartarot.com.br`) foi concebido para ser uma suíte expansível de ferramentas esotéricas e arquetípicas. O projeto combina cálculos numerológicos precisos, privacidade de dados e uma arquitetura orientada a performance e SEO técnico para buscadores.
 
 ---
 

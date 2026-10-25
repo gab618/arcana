@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { ShareButtons } from "@/components/share-buttons";
 import { ArcanoCard } from "@/features/arcano-pessoal/components/arcano-card";
+import { trackTarotEvent } from "@/lib/analytics";
 import { getArcanumByNumber } from "@/lib/tarot/major-arcana";
 import type { MajorArcanum } from "@/lib/tarot/types";
 import {
@@ -66,6 +67,8 @@ export function ArcanoAnualForm() {
     const birthFormatted = `${pad(day)}/${pad(month)}/${year}`;
     const cycleStart = `${pad(day)}/${pad(month)}/${refYear}`;
     const cycleEnd = `${pad(day)}/${pad(month)}/${refYear + 1}`;
+
+    trackTarotEvent("calcular_arcano_anual", "arcano_anual", String(calc.final));
 
     setResult({
       arcanum,
@@ -138,9 +141,13 @@ export function ArcanoAnualForm() {
           className="rounded-2xl border border-zinc-200 bg-zinc-50/50 p-6 dark:border-zinc-800 dark:bg-zinc-900/40"
         >
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-            <div className="w-40 shrink-0">
+            <Link
+              href={`/arcanos/${result.arcanum.slug}`}
+              className="w-40 shrink-0 transition-transform hover:scale-105"
+              aria-label={`Ver significado de ${result.arcanum.name}`}
+            >
               <ArcanoCard arcanum={result.arcanum} priority />
-            </div>
+            </Link>
 
             <div className="flex-1 space-y-3 text-center sm:text-left">
               <span className="inline-block rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">

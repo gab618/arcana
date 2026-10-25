@@ -1,3 +1,4 @@
+import { MAJOR_CONTENT } from "./content";
 import type { MajorArcanum } from "./types";
 
 /** Todas as cartas têm a mesma proporção, então o tamanho é fixo (evita layout shift). */
@@ -32,15 +33,19 @@ const CARDS: ReadonlyArray<readonly [number, string, string]> = [
 ];
 
 export const MAJOR_ARCANA: readonly MajorArcanum[] = CARDS.map(
-  ([number, slug, name]) => ({
-    type: "major",
-    number,
-    slug,
-    name,
-    summary: PLACEHOLDER_SUMMARY,
-    image: `/arcanos/${slug}.webp`,
-    imageAlt: `Carta ${name} do tarot (arcano ${number})`,
-  }),
+  ([number, slug, name]) => {
+    const content = MAJOR_CONTENT[slug];
+    return {
+      type: "major",
+      number,
+      slug,
+      name,
+      summary: content?.summary ?? PLACEHOLDER_SUMMARY,
+      content,
+      image: `/arcanos/${slug}.webp`,
+      imageAlt: `Carta ${name} do tarot (arcano ${number})`,
+    };
+  },
 );
 
 export function getArcanumByNumber(n: number): MajorArcanum {
