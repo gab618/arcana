@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookiePreferencesButton } from "@/components/cookie-preferences-button";
 import { SITE_NAME } from "@/lib/site";
 
 const FOOTER_LINKS = [
@@ -31,6 +32,9 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <CookiePreferencesButton />
+            </li>
           </ul>
         </nav>
       </div>
