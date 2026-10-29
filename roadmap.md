@@ -8,9 +8,9 @@ Estruturar o site em Next.js para ranquear organicamente no Google e cumprir tod
 
 - [x] Registrar o domínio definitivo no Registro.br (tirartarot.com.br)
 
-- [ ] Configurar DNS no Registro.br apontando para os servidores da Vercel
+- [x] Configurar DNS no Registro.br apontando para os servidores da Vercel
 
-- [ ] Configurar redirecionamento automático de http:// para https:// e canonical tag
+- [x] Configurar redirecionamento automático de http:// para https:// e canonical tag
 
 - [ ] Validar se as variáveis de ambiente de produção estão configuradas na Vercel
 
@@ -56,7 +56,7 @@ Estruturar o site em Next.js para ranquear organicamente no Google e cumprir tod
 
 - [x] Instalar o Google Analytics 4 (GA4) via @next/third-parties/google ou Google Tag Manager
 
-- [ ] Ativar o Vercel Analytics / Speed Insights no painel da Vercel
+- [x] Ativar o Vercel Analytics / Speed Insights no painel da Vercel
 
 - [x] Configurar evento personalizado no GA4 quando o usuário completa uma tiragem de cartas
 
