@@ -359,20 +359,30 @@ export function TiragemTresCartas() {
                   <div className="mt-5 grid grid-cols-6 gap-2 sm:grid-cols-11 sm:gap-2.5">
                     {deck.map((cardNumber, idx) => {
                       const alreadyPicked = pickedNumbers.includes(cardNumber);
+                      const positionNumber = idx + 1;
                       return (
                         <button
                           key={cardNumber}
                           type="button"
                           disabled={alreadyPicked}
                           onClick={() => handlePickCard(cardNumber)}
-                          aria-label={`Escolher carta ${idx + 1} do leque`}
-                          className={`aspect-[600/1050] w-full transition ${
+                          aria-label={`Escolher carta ${positionNumber} do leque`}
+                          className={`group relative aspect-[600/1050] w-full transition ${
                             alreadyPicked
                               ? "pointer-events-none scale-90 opacity-15"
                               : "cursor-pointer hover:-translate-y-1.5"
                           }`}
                         >
-                          <MiniCardBack className="h-full w-full" />
+                          <MiniCardBack className="h-full w-full transition group-hover:border-amber-300" />
+                          <span
+                            className={`absolute bottom-1 inset-x-1 rounded py-0.5 text-center text-[10px] font-bold tracking-tight transition sm:bottom-1.5 sm:text-xs ${
+                              alreadyPicked
+                                ? "border border-transparent bg-black/50 text-zinc-500"
+                                : "border border-amber-400/30 bg-black/80 text-amber-200 shadow-sm group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-zinc-950"
+                            }`}
+                          >
+                            {positionNumber}
+                          </span>
                         </button>
                       );
                     })}
