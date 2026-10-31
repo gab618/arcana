@@ -27,4 +27,10 @@ export const TOOLS: readonly Tool[] = [
     title: "Arcano Anual",
     description: "Descubra o arcano que rege seu ciclo de aniversário a aniversário.",
   },
+  {
+    href: "/mapa-astral",
+    title: "Mapa Astral",
+    description:
+      "Veja seus planetas nos signos, com ou sem coordenadas de nascimento.",
+  },
 ];

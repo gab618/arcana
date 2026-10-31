@@ -50,7 +50,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Menu Desktop (visível a partir de md) */}
-        <ul className="hidden items-center gap-6 text-sm font-medium md:flex">
+        <ul className="hidden items-center gap-6 text-sm font-medium lg:flex">
           {navLinks.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -76,7 +76,7 @@ export function SiteHeader() {
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
           aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
-          className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-zinc-300 text-zinc-700 transition hover:bg-zinc-100 md:hidden dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+          className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-zinc-300 text-zinc-700 transition hover:bg-zinc-100 lg:hidden dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
         >
           {isOpen ? (
             // Ícone X
@@ -113,7 +113,7 @@ export function SiteHeader() {
 
       {/* Painel Dropdown Mobile */}
       {isOpen && (
-        <div className="border-b border-zinc-200 bg-white/95 px-4 pt-2 pb-5 shadow-lg backdrop-blur-md md:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+        <div className="border-b border-zinc-200 bg-white/95 px-4 pt-2 pb-5 shadow-lg backdrop-blur-md lg:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
           <ul className="flex flex-col space-y-1">
             {navLinks.map((item) => {
               const isActive = pathname === item.href;
