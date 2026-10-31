@@ -6,7 +6,7 @@ import { sendGAEvent } from "@next/third-parties/google";
  */
 export function trackTarotEvent(
   action: string,
-  category: "carta_do_dia" | "tiragem_3_cartas" | "arcano_pessoal" | "arcano_anual" | "compartilhamento",
+  category: "carta_do_dia" | "tiragem_3_cartas" | "arcano_pessoal" | "arcano_anual" | "mapa_astral" | "compartilhamento",
   label?: string,
 ) {
   try {
