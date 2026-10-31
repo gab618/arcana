@@ -148,13 +148,17 @@ export function MapaAstralForm() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="flex flex-col gap-1 text-sm font-medium">
-            Data de nascimento
+            <span className="flex items-center justify-between">
+              <span>Data de nascimento</span>
+            </span>
             <input name="date" type="date" min="1900-01-01" className={inputClass} required />
           </label>
           <label className="flex flex-col gap-1 text-sm font-medium">
-            Hora de nascimento{" "}
-            <span className="text-xs font-normal text-zinc-500">
-              {mode === "full" ? "(obrigatória)" : "(opcional)"}
+            <span className="flex items-center justify-between">
+              <span>Hora de nascimento</span>
+              <span className="text-xs font-normal text-zinc-500">
+                {mode === "full" ? "(obrigatória)" : "(opcional)"}
+              </span>
             </span>
             <input name="time" type="time" className={inputClass} required={mode === "full"} />
           </label>
@@ -237,6 +241,9 @@ export function MapaAstralForm() {
                     Local selecionado: {place.name}, {place.region}
                   </p>
                 )}
+                <p className="text-[11px] leading-relaxed text-zinc-500">
+                  * A coordenada aproximada da cidade é mais do que suficiente para a precisão astrológica dos signos, casas e ascendente. Não é necessário saber as coordenadas exatas do local de nascimento.
+                </p>
               </div>
             ) : (
               <div className="grid gap-4 sm:grid-cols-3">
